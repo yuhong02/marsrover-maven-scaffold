@@ -28,16 +28,14 @@ public class Rover {
      System.out.println(x  + " "  + y   +" "  + dir);
     }
     public void land(Area area, int x1, int y1, Integer facing) {
-    	if (x > 10 || y > 10)
-        {
-    		throw new IllegalArgumentException("x=" + x1 + "is out of area with 10");
-    	}
-    	if (x < 10 && y < 10){
+    	if (x1 > 10){
+     	   throw new IllegalArgumentException("x=" + x1 + " is out of area with 10");
+     	}
+    	if (x < area.width && y < area.height){
         	this.x = x1;
         	this.y = y1;
         	this.facing = facing;
-        }
-
+        }  
     }
     
     public String getPosition(){
