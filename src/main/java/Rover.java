@@ -28,11 +28,16 @@ public class Rover {
      System.out.println(x  + " "  + y   +" "  + dir);
     }
     public void land(Area area, int x1, int y1, Integer facing) {
-        if (x < area.width && y < area.height){
+    	if (x > 10 || y > 10)
+        {
+    		throw new IllegalArgumentException("x=" + x1 + "is out of area with 10");
+    	}
+    	if (x < 10 && y < 10){
         	this.x = x1;
         	this.y = y1;
         	this.facing = facing;
         }
+
     }
     
     public String getPosition(){
@@ -56,7 +61,7 @@ public class Rover {
       process(commands.charAt(idx));
      }
     }
-    private void process(Character command) {
+    public void process(Character command) {
      if (command.equals('L')) {
       turnLeft();
      } else if (command.equals('R')) {
@@ -68,7 +73,7 @@ public class Rover {
         "Speak in Mars language, please!");
      }
     }
-    private void move() {
+    public void move() {
      if (facing == N) {
       this.y ++  ;
      } else if (facing == E) {
@@ -79,10 +84,10 @@ public class Rover {
       this.x--;
      }
     }
-    private void turnLeft() {
+    public void turnLeft() {
      facing = (facing - 1) < N ? W : facing - 1;
     }
-    private void turnRight() {
+    public void turnRight() {
      facing = (facing  - 1) > W ? N : facing - 1;
     }
     public static void main(String args[]) {
